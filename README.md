@@ -16,3 +16,29 @@ rendeléskövetésre(valós időben láthatja a rendelés állapotát. Láthatju
 lesz egy elérhetőségek és információk rész a gyors kapcsolatteremtés érdekében.
 Az alkalmazás összeköttetésben van más betonszállító cégekkel(a felhasználó kiválaszthatja melyik oldalról szeretne rendelni, melyik van legközelebb stb..)
 
+Tervezett vállalásaim:(Fáró Sebestyén)
+
+	Frontend:
+  -felhasználó kezelése(bejelentkezés/kijelentkezés/regisztráció)
+  -betongyártó telephelyek felvitele
+  -ajánlatkérés kezelése
+
+	Backend:
+  -backend szerver tervezése(node, asp kiszolgáló használata)
+  -adatbázistervezés ER, EER diagram készítése
+  -kontrollerek létrehozása
+  
+Tervezett vállalásaim:(Erdősi Zsombor)
+
+  Frontend:
+  -webes alkalmazás design-ja
+  -felhasználói kapcsolat kezelése
+  -megrendelés kezelése
+
+	Backend:
+  -adattáblák kezelése
+  -modellek megtervezése
+  -végpontok tesztelése
+  
+
+  
