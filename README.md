@@ -1,46 +1,83 @@
-# Vizsgaremek
-Szoftver fejlesztő és tesztelő záróvizsga vizsgaremeke
-Résztvevők: Erdősi Zsombor, Fáró Sebestyén
+# **Szoftverfejlesztő és tesztelő záróvizsga – Vizsgaremek**
 
-Vizsgaremek célkitűzése:
+## **Résztvevők**
+- Erdősi Zsombor  
+- Fáró Sebestyén  
 
-A webes alkalmazás célja, hogy online felületen tegyük lehetővé a beton rendeléssel kapcsolatos összes fontos lépést.
+---
 
-Feladat leírása, bemutatása:
+## **Tartalomjegyzék**
+- [Vizsgaremek célkitűzése](#vizsgaremek-célkitűzése)
+- [Feladat leírása, bemutatása](#feladat-leírása-bemutatása)
+- [Tervezett vállalásaim – Fáró Sebestyén](#tervezett-vállalásaim--fáró-sebestyén)
+- [Tervezett vállalásaim – Erdősi Zsombor](#tervezett-vállalásaim--erdősi-zsombor)
+- [Tesztelés](#tesztelés)
 
-Ebben az alkalmazásban egy rövid regisztráció/bejelentkezés(ez kötelező, ha a felhasználó szeretne ajánlatot kérni vagy megrendelni.
-Ez után a felhasználó képes lesz ajánlatot kérni(egy rövid űrlap kitöltése után a rendszer automatikus ajánlatot generál),
-megrendelést leadni és időpontot foglalni(rövid űrlap, naptár, időpontofglaló rendszer),
-ár kalkulátor(pár adat megadása után autmaitkusan kiszámol egy árat),
-rendeléskövetésre(valós időben láthatja a rendelés állapotát. Láthatjuk a sofőrök elérhetőségét(hogy foglaltak e),
-lesz egy elérhetőségek és információk rész a gyors kapcsolatteremtés érdekében.
-Az alkalmazás összeköttetésben van más betonszállító cégekkel(a felhasználó kiválaszthatja melyik oldalról szeretne rendelni, melyik van legközelebb stb..)
+---
 
-Tervezett vállalásaim:(Fáró Sebestyén)
+## **Vizsgaremek célkitűzése**
 
-	Frontend:
-  -felhasználó kezelése(bejelentkezés/kijelentkezés/regisztráció)
-  -betongyártó telephelyek felvitele
-  -ajánlatkérés kezelése
+A webes alkalmazás célja, hogy egy online felületen tegyük lehetővé a betonrendeléssel kapcsolatos összes fontos folyamat lebonyolítását, a regisztrációtól egészen a rendelés követéséig.
 
-	Backend:
-  -backend szerver tervezése(node, asp kiszolgáló használata)
-  -adatbázistervezés ER, EER diagram készítése
-  -kontrollerek létrehozása
-  
-Tervezett vállalásaim:(Erdősi Zsombor)
+---
 
-  Frontend:
-  -webes alkalmazás design-ja
-  -felhasználói kapcsolat kezelése
-  -megrendelés kezelése
+## **Feladat leírása, bemutatása**
 
-	Backend:
-  -adattáblák kezelése
-  -modellek megtervezése
-  -végpontok tesztelése
+Az alkalmazás használatához a felhasználónak regisztrálnia és bejelentkeznie kell, amely kötelező ajánlatkérés vagy megrendelés leadása esetén.
 
+A bejelentkezést követően a felhasználó az alábbi funkciókat érheti el:
 
-  
-Backend és frontend oldali tesztek készítése(Nunit, Selinium)
-  
+- **Ajánlatkérés**  
+  Rövid űrlap kitöltése után a rendszer automatikus ajánlatot generál.
+
+- **Megrendelés leadása és időpontfoglalás**  
+  Űrlap és naptár alapú időpontfoglaló rendszer segítségével.
+
+- **Árkalkulátor**  
+  Néhány adat megadását követően a rendszer automatikusan kiszámítja a várható árat.
+
+- **Rendeléskövetés**  
+  A felhasználó valós időben nyomon követheti rendelése állapotát.
+
+- **Sofőrök elérhetősége**  
+  Látható, hogy az adott sofőr foglalt-e vagy elérhető.
+
+- **Kapcsolat és információk**  
+  Gyors kapcsolatteremtést biztosító elérhetőségi adatok.
+
+Az alkalmazás kapcsolatban áll több betonszállító céggel, így a felhasználó kiválaszthatja, melyik szolgáltatótól szeretne rendelni (pl. távolság vagy elérhetőség alapján).
+
+---
+
+## **Tervezett vállalásaim – Fáró Sebestyén**
+
+### **Frontend**
+- Felhasználókezelés (regisztráció, bejelentkezés, kijelentkezés)
+- Betongyártó telephelyek kezelése
+- Ajánlatkérés kezelése
+
+### **Backend**
+- Backend szerver tervezése (Node.js / ASP alapú kiszolgáló)
+- Adatbázis-tervezés (ER, EER diagramok készítése)
+- Kontrollerek létrehozása
+
+---
+
+## **Tervezett vállalásaim – Erdősi Zsombor**
+
+### **Frontend**
+- Webes alkalmazás design kialakítása
+- Felhasználói kapcsolatok kezelése
+- Megrendelések kezelése
+
+### **Backend**
+- Adattáblák kezelése
+- Modellek megtervezése
+- Végpontok tesztelése
+
+---
+
+## **Tesztelés**
+
+- Backend oldali tesztek készítése **NUnit** segítségével  
+- Frontend oldali automatizált tesztek készítése **Selenium** használatával
