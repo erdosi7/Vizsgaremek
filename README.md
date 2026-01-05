@@ -39,6 +39,8 @@ Tervezett vállalásaim:(Erdősi Zsombor)
   -adattáblák kezelése
   -modellek megtervezése
   -végpontok tesztelése
-  
 
+
+  
+Backend és frontend oldali tesztek készítése(Nunit, Selinium)
   
