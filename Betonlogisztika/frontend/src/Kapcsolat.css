@@ -1,0 +1,784 @@
+/* Kapcsolat.css - Minden osztály kapcsolat- előtaggal */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header stílusok */
+.kapcsolat-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.kapcsolat-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.kapcsolat-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.kapcsolat-logo-icon {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    background-image: url('/images/logoo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+/* Checkbox csoport stílusok */
+.kapcsolat-checkbox-group {
+    background: #f9fbfd;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e0e7ed;
+    margin: 25px 0;
+}
+
+.kapcsolat-checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.kapcsolat-checkbox-item:last-child {
+    margin-bottom: 0;
+}
+
+.kapcsolat-checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: #4fc3f7;
+    cursor: pointer;
+}
+
+.kapcsolat-checkbox-item input[type="checkbox"].error {
+    outline: 2px solid #e74c3c;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.kapcsolat-checkbox-item label {
+    font-size: 14px;
+    color: #2c3e50;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.kapcsolat-checkbox-item a {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.kapcsolat-checkbox-item a:hover {
+    text-decoration: underline;
+}
+
+.kapcsolat-logo-text {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.kapcsolat-nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.kapcsolat-nav-item {
+    margin: 0;
+}
+
+.kapcsolat-nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 20px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.kapcsolat-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.kapcsolat-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.kapcsolat-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4fc3f7;
+}
+
+/* Fiók menü stílusok */
+.kapcsolat-account-menu {
+    position: relative;
+    margin-left: 20px;
+}
+
+.kapcsolat-account-toggle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6ab0fe, #4a90e2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.kapcsolat-account-toggle:hover {
+    transform: scale(1.1);
+    border-color: #6ab0fe;
+}
+
+.kapcsolat-account-toggle i {
+    color: white;
+    font-size: 18px;
+}
+
+.kapcsolat-account-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 220px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.kapcsolat-account-dropdown.active {
+    display: flex;
+}
+
+.kapcsolat-account-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.kapcsolat-account-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.kapcsolat-account-content {
+    padding: 10px 0;
+}
+
+.kapcsolat-account-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.kapcsolat-account-menu-item i {
+    color: #6ab0fe;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.kapcsolat-account-menu-item:hover {
+    background: #f5f7fa;
+}
+
+.kapcsolat-logout-item {
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 12px;
+}
+
+.kapcsolat-logout-item i {
+    color: #e74c3c;
+}
+
+/* Hero szekció - 115px magas, ugyanaz a kép */
+.kapcsolat-hero {
+    background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), url('/images/betonlogisztika-hidbetonozas-vasszecseny-1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 115px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.kapcsolat-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.kapcsolat-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.kapcsolat-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Kapcsolat tartalom */
+.kapcsolat-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.kapcsolat-section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.kapcsolat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.kapcsolat-info {
+    background: #2c3e50;
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.kapcsolat-info h3 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    border-bottom: 2px solid #4fc3f7;
+    padding-bottom: 10px;
+}
+
+.kapcsolat-detail {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.kapcsolat-icon {
+    margin-right: 15px;
+    font-size: 20px;
+    color: #4fc3f7;
+    width: 25px;
+    text-align: center;
+}
+
+.kapcsolat-text h4 {
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: white;
+}
+
+.kapcsolat-text p {
+    color: #ddd;
+}
+
+.kapcsolat-form {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.kapcsolat-form h3 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #2c3e50;
+    border-bottom: 2px solid #4fc3f7;
+    padding-bottom: 10px;
+}
+
+.kapcsolat-form-group {
+    margin-bottom: 20px;
+}
+
+.kapcsolat-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 15px;
+}
+
+.kapcsolat-form-control {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e7ed;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9fbfd;
+}
+
+.kapcsolat-form-control:focus {
+    outline: none;
+    border-color: #4fc3f7;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.1);
+}
+
+.kapcsolat-form-control.error {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
+
+.kapcsolat-form-control.error:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+}
+
+textarea.kapcsolat-form-control {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+select.kapcsolat-form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234fc3f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+    cursor: pointer;
+}
+
+.kapcsolat-required {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.kapcsolat-error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.kapcsolat-error-message.visible {
+    display: block;
+}
+
+.kapcsolat-btn {
+    display: inline-block;
+    background-color: #4fc3f7;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.kapcsolat-btn:hover {
+    background-color: #2c3e50;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Térkép szekció */
+.kapcsolat-map-section {
+    margin-top: 40px;
+}
+
+.kapcsolat-map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    position: relative;
+}
+
+.kapcsolat-map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.kapcsolat-custom-marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.kapcsolat-custom-marker::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #e74c3c;
+}
+
+/* Mixerek szekció */
+.kapcsolat-mixers-section {
+    background-color: #eef2f7;
+    padding: 80px 20px;
+}
+
+.kapcsolat-mixers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kapcsolat-mixers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.kapcsolat-mixer-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.kapcsolat-mixer-card:hover {
+    transform: translateY(-10px);
+}
+
+.kapcsolat-mixer-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.kapcsolat-mixer-content {
+    padding: 25px;
+}
+
+.kapcsolat-mixer-content h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.kapcsolat-mixer-content p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.kapcsolat-mixer-specs {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.kapcsolat-mixer-specs ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.kapcsolat-mixer-specs li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.kapcsolat-mixer-specs i {
+    margin-right: 10px;
+    color: #4fc3f7;
+    width: 20px;
+}
+
+/* Success Modal */
+.kapcsolat-success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: kapcsolatFadeIn 0.5s ease;
+}
+
+.kapcsolat-success-modal.active {
+    display: flex;
+}
+
+@keyframes kapcsolatFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.kapcsolat-modal-content {
+    background: white;
+    padding: 60px 50px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    animation: kapcsolatScaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes kapcsolatScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.kapcsolat-checkmark {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #4fc3f7;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: kapcsolatPulse 2s infinite;
+}
+
+@keyframes kapcsolatPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(79, 195, 247, 0);
+    }
+}
+
+.kapcsolat-checkmark i {
+    color: white;
+    font-size: 50px;
+}
+
+.kapcsolat-modal-content h3 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.kapcsolat-modal-content p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.kapcsolat-modal-close {
+    background: linear-gradient(135deg, #4fc3f7, #2c3e50);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+}
+
+.kapcsolat-modal-close:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+}
+
+/* Footer */
+.kapcsolat-footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.kapcsolat-footer p {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.kapcsolat-footer p a {
+    color: white;
+    text-decoration: none;
+}
+
+.kapcsolat-footer p a:hover {
+    text-decoration: underline;
+}
+
+.kapcsolat-footer-links {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.kapcsolat-footer-links a {
+    color: #4fc3f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px;
+}
+
+.kapcsolat-footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.kapcsolat-social-icons {
+    margin-top: 25px;
+}
+
+.kapcsolat-social-icons a {
+    color: white;
+    font-size: 22px;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.kapcsolat-social-icons a:hover {
+    color: #4fc3f7;
+}
+
+.kapcsolat-footer-copyright {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+}
+
+/* Reszponzív design */
+@media (max-width: 768px) {
+    .kapcsolat-header-container {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    
+    .kapcsolat-nav-menu {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .kapcsolat-nav-link {
+        padding: 12px 15px;
+    }
+    
+    .kapcsolat-hero h1 {
+        font-size: 36px;
+    }
+    
+    .kapcsolat-hero p {
+        font-size: 18px;
+    }
+    
+    .kapcsolat-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kapcsolat-map-container {
+        height: 300px;
+    }
+    
+    .kapcsolat-custom-marker {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .kapcsolat-account-menu {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .kapcsolat-account-dropdown {
+        right: -50px;
+    }
+}

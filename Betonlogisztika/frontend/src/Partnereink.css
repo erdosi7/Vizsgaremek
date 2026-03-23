@@ -1,0 +1,755 @@
+/* Partnereink.css - Minden osztály partnereink- előtaggal */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header stílusok */
+.partnereink-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.partnereink-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.partnereink-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.partnereink-logo-icon {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    background-image: url('/images/logoo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.partnereink-logo-text {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.partnereink-nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.partnereink-nav-item {
+    margin: 0;
+}
+
+.partnereink-nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 20px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.partnereink-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.partnereink-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.partnereink-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4fc3f7;
+}
+
+/* Fiók menü stílusok */
+.partnereink-account-menu {
+    position: relative;
+    margin-left: 20px;
+}
+
+.partnereink-account-toggle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6ab0fe, #4a90e2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.partnereink-account-toggle:hover {
+    transform: scale(1.1);
+    border-color: #6ab0fe;
+}
+
+.partnereink-account-toggle i {
+    color: white;
+    font-size: 18px;
+}
+
+.partnereink-account-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 220px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.partnereink-account-dropdown.active {
+    display: flex;
+}
+
+.partnereink-account-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.partnereink-account-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.partnereink-account-content {
+    padding: 10px 0;
+}
+
+.partnereink-account-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.partnereink-account-menu-item i {
+    color: #6ab0fe;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.partnereink-account-menu-item:hover {
+    background: #f5f7fa;
+}
+
+.partnereink-logout-item {
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 12px;
+}
+
+.partnereink-logout-item i {
+    color: #e74c3c;
+}
+
+/* Hero szekció - 115px magas, ugyanaz a kép */
+.partnereink-hero {
+    background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), url('/images/betonlogisztika-hidbetonozas-vasszecseny-1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 115px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.partnereink-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.partnereink-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.partnereink-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Csatlakozzon partnereinkhez - FINOMABB SZÍNEK, AZ OLDAL TETEJÉN */
+.partnereink-join-top {
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #f0f7ff, #e3f0fa);
+    border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+}
+
+.partnereink-join-top-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.partnereink-join-top-content {
+    text-align: center;
+    background: white;
+    padding: 45px 40px;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(79, 195, 247, 0.15);
+    border: 1px solid rgba(79, 195, 247, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.partnereink-join-top-content::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.partnereink-join-top-content::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.partnereink-join-top-icon {
+    font-size: 60px;
+    color: #4fc3f7;
+    margin-bottom: 20px;
+    background: rgba(79, 195, 247, 0.1);
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 10px 25px rgba(79, 195, 247, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.partnereink-join-top-content h2 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.partnereink-join-top-content p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.partnereink-join-top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #4fc3f7, #2c3e50);
+    color: white;
+    padding: 16px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(79, 195, 247, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.partnereink-join-top-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(79, 195, 247, 0.4);
+    background: linear-gradient(135deg, #2c3e50, #4fc3f7);
+}
+
+.partnereink-join-top-btn i {
+    transition: transform 0.3s ease;
+}
+
+.partnereink-join-top-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* Térkép szekció */
+.partnereink-map-section {
+    padding: 60px 20px;
+    background-color: #f5f7fa;
+}
+
+.partnereink-map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partnereink-section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.partnereink-section-subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 18px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partnereink-map-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.partnereink-map-btn {
+    background: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: #2c3e50;
+}
+
+.partnereink-map-btn:hover, .partnereink-map-btn.active {
+    background: #4fc3f7;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 195, 247, 0.3);
+}
+
+.partnereink-map {
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    z-index: 1;
+}
+
+/* Egyedi markerek a cégnevekkel */
+.partnereink-custom-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.partnereink-marker-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100px;
+    transform: translate(-50%, -50%);
+}
+
+.partnereink-marker-name {
+    background: #2c3e50;
+    color: white;
+    font-weight: 600;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 2px solid #4fc3f7;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.partnereink-marker-dot {
+    width: 12px;
+    height: 12px;
+    background: #4fc3f7;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Kiválasztott partner részletei - közvetlenül a térkép alatt */
+.partnereink-selected-partner {
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+    margin-top: -20px;
+    position: relative;
+    z-index: 5;
+}
+
+.partnereink-selected-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.partnereink-selected-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-left: 5px solid #4fc3f7;
+    border-right: 5px solid #4fc3f7;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.partnereink-selected-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eef2f7;
+}
+
+.partnereink-selected-header h4 {
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.partnereink-selected-details {
+    margin-bottom: 25px;
+}
+
+.partnereink-selected-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    background: #f9fbfd;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.partnereink-selected-item:hover {
+    background: #f0f9ff;
+}
+
+.partnereink-selected-item i {
+    color: #4fc3f7;
+    margin-right: 15px;
+    margin-top: 3px;
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.partnereink-selected-item span {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.partnereink-selected-link {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.partnereink-selected-link:hover {
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+.partnereink-selected-close {
+    background: transparent;
+    border: 2px solid #e74c3c;
+    color: #e74c3c;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.partnereink-selected-close:hover {
+    background: #e74c3c;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Együttműködési előnyök - visszarakva az oldal aljára */
+.partnereink-benefits-bottom {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8fafd, #f0f4fa);
+    border-top: 1px solid rgba(79, 195, 247, 0.2);
+}
+
+.partnereink-benefits-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partnereink-benefits-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.partnereink-benefit-bottom-card {
+    background: white;
+    border-radius: 15px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(79, 195, 247, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(79, 195, 247, 0.1);
+}
+
+.partnereink-benefit-bottom-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(79, 195, 247, 0.15);
+    border-color: rgba(79, 195, 247, 0.3);
+}
+
+.partnereink-benefit-bottom-icon {
+    font-size: 48px;
+    color: #4fc3f7;
+    margin-bottom: 20px;
+}
+
+.partnereink-benefit-bottom-card h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.partnereink-benefit-bottom-card p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Footer */
+.partnereink-footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.partnereink-footer p {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.partnereink-footer p a {
+    color: white;
+    text-decoration: none;
+}
+
+.partnereink-footer p a:hover {
+    text-decoration: underline;
+}
+
+.partnereink-footer-links {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.partnereink-footer-links a {
+    color: #4fc3f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px;
+}
+
+.partnereink-footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.partnereink-social-icons {
+    margin-top: 25px;
+}
+
+.partnereink-social-icons a {
+    color: white;
+    font-size: 22px;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.partnereink-social-icons a:hover {
+    color: #4fc3f7;
+}
+
+.partnereink-footer-copyright {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+}
+
+/* Reszponzív design */
+@media (max-width: 768px) {
+    .partnereink-header-container {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    
+    .partnereink-nav-menu {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .partnereink-nav-link {
+        padding: 12px 15px;
+    }
+    
+    .partnereink-hero h1 {
+        font-size: 36px;
+    }
+    
+    .partnereink-hero p {
+        font-size: 18px;
+    }
+    
+    .partnereink-map {
+        height: 350px;
+    }
+    
+    .partnereink-map-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .partnereink-map-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .partnereink-join-top-content {
+        padding: 30px 20px;
+    }
+    
+    .partnereink-join-top-content h2 {
+        font-size: 28px;
+    }
+    
+    .partnereink-join-top-content p {
+        font-size: 16px;
+    }
+    
+    .partnereink-join-top-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+    
+    .partnereink-benefits-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .partnereink-account-menu {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .partnereink-account-dropdown {
+        right: -50px;
+    }
+    
+    .partnereink-marker-name {
+        font-size: 9px !important;
+        padding: 3px 8px !important;
+    }
+}

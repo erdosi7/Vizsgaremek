@@ -1,0 +1,835 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.ajanlatkeres-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.ajanlatkeres-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.ajanlatkeres-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.ajanlatkeres-logo-icon {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    background-image: url('/images/logoo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.ajanlatkeres-logo-text {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.ajanlatkeres-nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.ajanlatkeres-nav-item {
+    margin: 0;
+}
+
+.ajanlatkeres-nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 20px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ajanlatkeres-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ajanlatkeres-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.ajanlatkeres-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4fc3f7;
+}
+
+.ajanlatkeres-account-menu {
+    position: relative;
+    margin-left: 20px;
+}
+
+.ajanlatkeres-account-toggle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6ab0fe, #4a90e2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.ajanlatkeres-account-toggle:hover {
+    transform: scale(1.1);
+    border-color: #6ab0fe;
+}
+
+.ajanlatkeres-account-toggle i {
+    color: white;
+    font-size: 18px;
+}
+
+.ajanlatkeres-account-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 220px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.ajanlatkeres-account-dropdown.active {
+    display: flex;
+}
+
+.ajanlatkeres-account-header {
+    background: linear-gradient(135deg, #2c3e50, #2c3e50);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.ajanlatkeres-account-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ajanlatkeres-account-content {
+    padding: 10px 0;
+}
+
+.ajanlatkeres-account-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.ajanlatkeres-account-menu-item i {
+    color: #6ab0fe;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.ajanlatkeres-account-menu-item:hover {
+    background: #f5f7fa;
+}
+
+.ajanlatkeres-logout-item {
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 12px;
+}
+
+.ajanlatkeres-logout-item i {
+    color: #e74c3c;
+}
+
+.ajanlatkeres-hero {
+    background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), url('/images/betonlogisztika-hidbetonozas-vasszecseny-1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 115px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.ajanlatkeres-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+    pointer-events: none;
+}
+
+.ajanlatkeres-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.ajanlatkeres-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ajanlatkeres-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ajanlatkeres-btn {
+    display: inline-block;
+    background-color: #4fc3f7;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ajanlatkeres-btn:hover {
+    background-color: #2c3e50;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.ajanlatkeres-quote-section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ajanlatkeres-section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.ajanlatkeres-quote-container {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.ajanlatkeres-quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ajanlatkeres-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.ajanlatkeres-three-col {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ajanlatkeres-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.ajanlatkeres-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.ajanlatkeres-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+
+.ajanlatkeres-form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e0e7ed;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9fbfd;
+}
+
+.ajanlatkeres-form-control:focus {
+    outline: none;
+    border-color: #4fc3f7;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.1);
+}
+
+input[type="date"].ajanlatkeres-form-control {
+    font-size: 16px;
+    min-height: 52px;
+}
+
+select.ajanlatkeres-form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234fc3f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ajanlatkeres-form-control.error {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+}
+
+.ajanlatkeres-form-control.error:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+}
+
+.ajanlatkeres-error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-left: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.ajanlatkeres-error-message.visible {
+    display: block;
+}
+
+textarea.ajanlatkeres-form-control {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.ajanlatkeres-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #f9fbfd;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e0e7ed;
+}
+
+.ajanlatkeres-checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.ajanlatkeres-checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: #4fc3f7;
+    cursor: pointer;
+}
+
+.ajanlatkeres-checkbox-item label {
+    font-size: 15px;
+    color: #2c3e50;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.ajanlatkeres-checkbox-item a {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.ajanlatkeres-checkbox-item a:hover {
+    text-decoration: underline;
+}
+
+.ajanlatkeres-required-badge {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.ajanlatkeres-form-note {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.ajanlatkeres-submit-btn {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.ajanlatkeres-submit-btn .ajanlatkeres-btn {
+    padding: 16px 50px;
+    font-size: 18px;
+    background-color: #4fc3f7;
+    min-width: 250px;
+}
+
+.ajanlatkeres-distance-info {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 12px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.ajanlatkeres-distance-info i {
+    color: #2196f3;
+    font-size: 20px;
+}
+
+.ajanlatkeres-distance-info strong {
+    color: #2196f3;
+    font-weight: 700;
+}
+
+.ajanlatkeres-info-message {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.ajanlatkeres-info-message i {
+    color: #2196f3;
+    font-size: 18px;
+}
+
+/* Disabled select opciók */
+.ajanlatkeres-form-control option:disabled {
+    color: #999;
+    font-style: italic;
+    background-color: #f5f5f5;
+}
+
+.ajanlatkeres-price-preview {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    border: 2px solid #4fc3f7;
+    box-shadow: 0 4px 15px rgba(79, 195, 247, 0.1);
+}
+
+.ajanlatkeres-price-preview h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #4fc3f7;
+    padding-bottom: 10px;
+}
+
+.ajanlatkeres-price-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ajanlatkeres-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e7ed;
+}
+
+.ajanlatkeres-price-row:last-child {
+    border-bottom: none;
+}
+
+.ajanlatkeres-price-row span:first-child {
+    color: #555;
+    font-weight: 500;
+}
+
+.ajanlatkeres-price-row span:last-child {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.ajanlatkeres-price-total-net {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid #2c3e50;
+    font-size: 16px;
+}
+
+.ajanlatkeres-price-total-net span:first-child {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.ajanlatkeres-price-total-net span:last-child {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.ajanlatkeres-price-total-brutto {
+    margin-top: 5px;
+    padding-top: 10px;
+    border-top: 2px solid #4caf50;
+    font-size: 18px;
+}
+
+.ajanlatkeres-price-total-brutto span:first-child {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.ajanlatkeres-price-total-brutto span:last-child {
+    color: #4caf50;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.ajanlatkeres-price-row:has(span:first-child:contains("ÁFA")) {
+    color: #ff9800;
+}
+
+.ajanlatkeres-price-row:has(span:first-child:contains("ÁFA")) span:last-child {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+.ajanlatkeres-section-subtitle {
+    color: #2c3e50;
+    margin: 30px 0 20px;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 2px solid #4fc3f7;
+    padding-bottom: 10px;
+}
+
+.ajanlatkeres-section-subtitle:first-of-type {
+    margin-top: 0;
+}
+
+.ajanlatkeres-success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: ajanlatkeresFadeIn 0.5s ease;
+}
+
+.ajanlatkeres-success-modal.active {
+    display: flex;
+}
+
+@keyframes ajanlatkeresFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.ajanlatkeres-modal-content {
+    background: white;
+    padding: 60px 50px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    animation: ajanlatkeresScaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes ajanlatkeresScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ajanlatkeres-checkmark-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #4fc3f7;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ajanlatkeresPulse 2s infinite;
+}
+
+@keyframes ajanlatkeresPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(79, 195, 247, 0);
+    }
+}
+
+.ajanlatkeres-checkmark-circle i {
+    color: white;
+    font-size: 50px;
+}
+
+.ajanlatkeres-modal-content h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.ajanlatkeres-modal-content p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.ajanlatkeres-modal-close {
+    background: linear-gradient(135deg, #4fc3f7, #2c3e50);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+}
+
+.ajanlatkeres-modal-close:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+}
+
+.ajanlatkeres-footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.ajanlatkeres-footer p {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.ajanlatkeres-footer p a {
+    color: white;
+    text-decoration: none;
+}
+
+.ajanlatkeres-footer p a:hover {
+    text-decoration: underline;
+}
+
+.ajanlatkeres-footer-links {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ajanlatkeres-footer-links a {
+    color: #4fc3f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px;
+}
+
+.ajanlatkeres-footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.ajanlatkeres-social-icons {
+    margin-top: 25px;
+}
+
+.ajanlatkeres-social-icons a {
+    color: white;
+    font-size: 22px;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.ajanlatkeres-social-icons a:hover {
+    color: #4fc3f7;
+}
+
+.ajanlatkeres-footer-copyright {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .ajanlatkeres-header-container {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    
+    .ajanlatkeres-nav-menu {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .ajanlatkeres-nav-link {
+        padding: 12px 15px;
+    }
+    
+    .ajanlatkeres-hero h1 {
+        font-size: 36px;
+    }
+    
+    .ajanlatkeres-hero p {
+        font-size: 18px;
+    }
+    
+    .ajanlatkeres-form-row, .ajanlatkeres-three-col {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .ajanlatkeres-quote-container {
+        padding: 30px 20px;
+    }
+    
+    .ajanlatkeres-checkbox-group {
+        padding: 15px;
+    }
+    
+    .ajanlatkeres-modal-content {
+        padding: 40px 30px;
+    }
+    
+    .ajanlatkeres-submit-btn .ajanlatkeres-btn {
+        min-width: 200px;
+        padding: 14px 30px;
+    }
+    
+    .ajanlatkeres-price-preview {
+        padding: 15px;
+    }
+    
+    .ajanlatkeres-price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .ajanlatkeres-price-row span:last-child {
+        align-self: flex-end;
+    }
+    
+    .ajanlatkeres-distance-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ajanlatkeres-info-message {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ajanlatkeres-account-menu {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .ajanlatkeres-account-dropdown {
+        right: -50px;
+    }
+}

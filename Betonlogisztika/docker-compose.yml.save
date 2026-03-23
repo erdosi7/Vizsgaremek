@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Frontend (amit már megcsináltál)
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    container_name: beton_frontend
+
+  # MySQL adatbázis
+  mysql:
+    image: mysql:8
+    container_name: beton_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: beton_db
+      MYSQL_USER: beton_user
+      MYSQL_PASSWORD: beton123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: beton_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
+

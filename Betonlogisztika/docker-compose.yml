@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8081:80"  # MÓDOSÍTVA: 8080 helyett 8081
+    container_name: beton_frontend
+    platform: linux/arm64  # HOZZÁADVA: platform megadása
+
+  mysql:
+    image: mysql:8
+    container_name: beton_mysql
+    restart: always
+    platform: linux/arm64  # HOZZÁADVA
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: beton_db
+      MYSQL_USER: beton_user
+      MYSQL_PASSWORD: beton123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: arm64v8/phpmyadmin  # MÓDOSÍTVA: ARM-es verzió
+    container_name: beton_phpmyadmin
+    restart: always
+    platform: linux/arm64  # HOZZÁADVA
+    ports:
+      - "8082:80"  # MÓDOSÍTVA: 8082-es port
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
