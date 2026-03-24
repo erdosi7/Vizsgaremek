@@ -9,17 +9,14 @@ const Megrendeles = ({ onLogout }) => {
   const dropdownRef = useRef(null);
   const accountToggleRef = useRef(null);
   const [user, setUser] = useState(null);
-  
-  // Meglévő ajánlat kiválasztása
+
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  
-  // Számlázási cím megegyezik-e a szállítási címmel
+
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(true);
-  
-  // Címadatok state-ek
+ 
   const [shippingAddress, setShippingAddress] = useState({
     postalCode: '',
     city: '',
@@ -36,7 +33,6 @@ const Megrendeles = ({ onLogout }) => {
   
   const [addressErrors, setAddressErrors] = useState({});
   
-  // Űrlapok state
   const [formData, setFormData] = useState({
     taxNumber: '',
     message: '',
@@ -51,7 +47,6 @@ const Megrendeles = ({ onLogout }) => {
   const [serverError, setServerError] = useState('');
   const modalRef = useRef(null);
 
-  // Felhasználó adatok betöltése tokenből
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -66,18 +61,15 @@ const Megrendeles = ({ onLogout }) => {
     }
   }, []);
 
-  // Érvényes ajánlatok betöltése a backendből
   useEffect(() => {
     loadValidOffers();
   }, []);
 
-  // Ellenőrizzük, hogy érkezett-e kiválasztott ajánlat a navigációból
   useEffect(() => {
     if (location.state?.selectedOffer) {
       const offer = location.state.selectedOffer;
       setSelectedQuote(offer);
-      
-      // Cím kitöltése az ajánlatból - JAVÍTVA!
+ 
       setShippingAddress({
         postalCode: offer.iranyitoszam || '',
         city: offer.telepules || '',
@@ -111,7 +103,7 @@ const Megrendeles = ({ onLogout }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Csak az elfogadott ajánlatokat szűrjük
+
         const today = new Date();
         const validOffers = data.ajanlatok.filter(offer => {
           const validUntil = new Date(offer.ervenyes_ig);
@@ -130,7 +122,6 @@ const Megrendeles = ({ onLogout }) => {
     }
   };
 
-  // Ha a számlázási cím megegyezik a szállításival, automatikusan másoljuk
   useEffect(() => {
     if (billingSameAsShipping) {
       setBillingAddress({ ...shippingAddress });
@@ -263,8 +254,7 @@ const Megrendeles = ({ onLogout }) => {
 
   const handleQuoteSelect = (offer) => {
     setSelectedQuote(offer);
-    
-    // Cím kitöltése az ajánlatból - JAVÍTVA!
+ 
     setShippingAddress({
       postalCode: offer.iranyitoszam || '',
       city: offer.telepules || '',
@@ -279,7 +269,6 @@ const Megrendeles = ({ onLogout }) => {
     const errors = {};
     let isValid = true;
 
-    // Szállítási cím ellenőrzése
     if (!shippingAddress.postalCode.trim()) {
       errors.shippingPostalCode = 'Kérjük, adja meg az irányítószámot!';
       isValid = false;
@@ -297,7 +286,6 @@ const Megrendeles = ({ onLogout }) => {
       isValid = false;
     }
 
-    // Számlázási cím ellenőrzése (ha nem egyezik meg)
     if (!billingSameAsShipping) {
       if (!billingAddress.postalCode.trim()) {
         errors.billingPostalCode = 'Kérjük, adja meg az irányítószámot!';
@@ -331,18 +319,15 @@ const Megrendeles = ({ onLogout }) => {
     const errors = {};
     let isValid = true;
 
-    // Ellenőrizzük, hogy van-e kiválasztott ajánlat
     if (!selectedQuote) {
       errors.selectedQuote = 'Kérjük, válasszon ki egy ajánlatot!';
       isValid = false;
     }
 
-    // Címek ellenőrzése
     if (!validateAddresses()) {
       isValid = false;
     }
 
-    // Adószám ellenőrzés
     if (!formData.taxNumber.trim()) {
       errors.taxNumber = 'Kérjük, adja meg az adószámát!';
       isValid = false;
@@ -351,7 +336,6 @@ const Megrendeles = ({ onLogout }) => {
       isValid = false;
     }
 
-    // Checkboxok ellenőrzése
     if (!formData.terms) {
       errors.terms = 'Kérjük, fogadja el az ÁSZF-et!';
       isValid = false;
@@ -366,7 +350,6 @@ const Megrendeles = ({ onLogout }) => {
 
     if (!isValid) return;
 
-    // BACKEND KÜLDÉS
     setIsSubmitting(true);
     setServerError('');
 
@@ -454,8 +437,7 @@ const Megrendeles = ({ onLogout }) => {
               <a href="/partnereink" className="megrendeles-nav-link" onClick={(e) => handleNavLinkClick(e, '/partnereink')}>Partnereink</a>
             </li>
           </ul>
-          
-          {/* Fiók menü */}
+  
           <div className="megrendeles-account-menu">
             <div className="megrendeles-account-toggle" ref={accountToggleRef} onClick={toggleDropdown}>
               <i className="fas fa-user"></i>
@@ -465,28 +447,24 @@ const Megrendeles = ({ onLogout }) => {
                 <h3>Fiókom</h3>
               </div>
               <div className="megrendeles-account-content">
-                
-                {/* Megrendeléseim */}
+       
                 <a href="/megrendeleim" className="megrendeles-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/megrendeleim')}>
                   <i className="fas fa-box"></i>
                   <span>Megrendeléseim</span>
                 </a>
-                
-                {/* Ajánlataim */}
+ 
                 <a href="/ajanlataim" className="megrendeles-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/ajanlataim')}>
                   <i className="fas fa-file-invoice" style={{ color: '#4CAF50' }}></i>
                   <span>Ajánlataim</span>
                 </a>
-                
-                {/* Admin Dashboard - CSAK ADMINOKNAK */}
+          
                 {user?.jogosultsag === 'admin' && (
                   <a href="/admin" className="megrendeles-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/admin')}>
                     <i className="fas fa-cog" style={{ color: '#f39c12' }}></i>
                     <span>Admin Dashboard</span>
                   </a>
                 )}
-                
-                {/* Kijelentkezés gomb */}
+        
                 <button className="megrendeles-account-menu-item megrendeles-logout-item" onClick={handleLogout}>
                   <i className="fas fa-sign-out-alt"></i>
                   <span>Kijelentkezés</span>
@@ -508,7 +486,6 @@ const Megrendeles = ({ onLogout }) => {
         <h2 className="megrendeles-section-title">Megrendelés indítása</h2>
         
         <div className="megrendeles-order-container">
-          {/* Meglévő ajánlatok */}
           <div className="megrendeles-quote-info">
             <h4>Elfogadott ajánlataim</h4>
             {isLoading ? (
@@ -551,7 +528,6 @@ const Megrendeles = ({ onLogout }) => {
             )}
           </div>
 
-          {/* Kiválasztott ajánlat részletei */}
           {selectedQuote && (
             <div className="megrendeles-order-summary">
               <h4>Kiválasztott ajánlat részletei</h4>
@@ -585,14 +561,12 @@ const Megrendeles = ({ onLogout }) => {
           )}
           
           <form onSubmit={handleSubmit}>
-            {/* Hibaüzenet, ha nincs kiválasztott ajánlat */}
             {formErrors.selectedQuote && (
               <div className="megrendeles-error-message visible" style={{ marginBottom: '20px' }}>
                 {formErrors.selectedQuote}
               </div>
             )}
 
-            {/* Szállítási cím */}
             <h3 style={{ margin: '30px 0 20px', color: '#2c3e50' }}>Szállítási cím</h3>
             <div className="megrendeles-form-row">
               <div className="megrendeles-form-group">
@@ -655,7 +629,6 @@ const Megrendeles = ({ onLogout }) => {
               </div>
             </div>
 
-            {/* Számlázási cím */}
             <h3 style={{ margin: '30px 0 20px', color: '#2c3e50' }}>Számlázási cím</h3>
             <div className="megrendeles-checkbox-item" style={{ marginBottom: '20px' }}>
               <input 
@@ -732,7 +705,6 @@ const Megrendeles = ({ onLogout }) => {
               </>
             )}
 
-            {/* Adószám */}
             <div className="megrendeles-form-group">
               <label htmlFor="taxNumber">Adószám: <span className="megrendeles-required-badge">*</span></label>
               <input 
@@ -747,7 +719,6 @@ const Megrendeles = ({ onLogout }) => {
               <div className={`megrendeles-error-message ${formErrors.taxNumber ? 'visible' : ''}`}>{formErrors.taxNumber}</div>
             </div>
 
-            {/* Megjegyzés */}
             <div className="megrendeles-form-group">
               <label htmlFor="message">Egyéb megjegyzések:</label>
               <textarea 
@@ -759,15 +730,13 @@ const Megrendeles = ({ onLogout }) => {
                 onChange={handleInputChange}
               ></textarea>
             </div>
-            
-            {/* Szerver hiba */}
+       
             {serverError && (
               <div className="megrendeles-error-message visible" style={{ marginBottom: '15px', textAlign: 'center' }}>
                 {serverError}
               </div>
             )}
-            
-            {/* Jogi nyilatkozatok */}
+       
             <div className="megrendeles-checkbox-group">
               <div className="megrendeles-checkbox-item">
                 <input 
@@ -804,7 +773,6 @@ const Megrendeles = ({ onLogout }) => {
         </div>
       </section>
 
-      {/* Success Modal */}
       <div className={`megrendeles-success-modal ${isModalActive ? 'active' : ''}`} ref={modalRef} onClick={handleModalClick}>
         <div className="megrendeles-modal-content">
           <div className="megrendeles-checkmark-circle">

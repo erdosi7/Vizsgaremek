@@ -8,7 +8,6 @@ describe('GET /api/ajanlataim', () => {
   let testEmail = `ajanlatget${Date.now()}@email.hu`;
 
   beforeAll(async () => {
-    // 1. Regisztráció
     await request(app)
       .post('/api/register')
       .send({
@@ -18,19 +17,16 @@ describe('GET /api/ajanlataim', () => {
         telefon: '+36 30 111 2222'
       });
 
-    // 2. User bejelentkezés
     const userLogin = await request(app)
       .post('/api/login')
       .send({ email: testEmail, jelszo: '123456' });
     userToken = userLogin.body.token;
 
-    // 3. Admin bejelentkezés
     const adminLogin = await request(app)
       .post('/api/login')
       .send({ email: 'admin@gmail.com', jelszo: 'admin67' });
     adminToken = adminLogin.body.token;
 
-    // 4. Ajánlat létrehozása
     const ajanlatRes = await request(app)
       .post('/api/ajanlatok')
       .set('Authorization', `Bearer ${userToken}`)
@@ -62,7 +58,6 @@ describe('GET /api/ajanlataim', () => {
     expect(Array.isArray(response.body.ajanlatok)).toBe(true);
     expect(response.body.ajanlatok.length).toBeGreaterThan(0);
     
-    // Ellenőrizzük, hogy a létrehozott ajánlat benne van
     const found = response.body.ajanlatok.find(a => a.id === ajanlatId);
     expect(found).toBeDefined();
   expect(parseFloat(found.mennyiseg)).toBe(12);
@@ -85,7 +80,6 @@ describe('GET /api/ajanlataim', () => {
   });
 
   it('más user nem látja a másik ajánlatait', async () => {
-    // Hozzunk létre egy másik usert
     const masikEmail = `masik${Date.now()}@email.hu`;
     await request(app)
       .post('/api/register')
@@ -107,20 +101,18 @@ describe('GET /api/ajanlataim', () => {
 
     expect(response.statusCode).toBe(200);
     
-    // Nem tartalmazhatja az előző user ajánlatát
     const contains = response.body.ajanlatok.some(a => a.id === ajanlatId);
     expect(contains).toBe(false);
   });
 
   it('admin is látja a sajátjait, de nem a userekét', async () => {
-    // Admin bejelentkezés (már van token)
+
     const adminResponse = await request(app)
       .get('/api/ajanlataim')
       .set('Authorization', `Bearer ${adminToken}`);
 
     expect(adminResponse.statusCode).toBe(200);
     
-    // Admin saját ajánlatai (lehet, hogy üres)
     expect(Array.isArray(adminResponse.body.ajanlatok)).toBe(true);
   });
 });

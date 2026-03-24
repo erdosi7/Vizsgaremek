@@ -1,14 +1,12 @@
 version: '3.8'
 
 services:
-  # Frontend (amit már megcsináltál)
   frontend:
     build: ./frontend
     ports:
       - "8080:80"
     container_name: beton_frontend
 
-  # MySQL adatbázis
   mysql:
     image: mysql:8
     container_name: beton_mysql
@@ -23,7 +21,6 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  # phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: beton_phpmyadmin

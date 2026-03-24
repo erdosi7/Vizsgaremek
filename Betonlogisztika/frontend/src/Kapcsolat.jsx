@@ -10,8 +10,7 @@ const Kapcsolat = ({ onLogout }) => {
   const accountToggleRef = useRef(null);
   const [user, setUser] = useState(null);
   const formRef = useRef(null);
-  
-  // Kapcsolati űrlap state
+ 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,7 +27,6 @@ const Kapcsolat = ({ onLogout }) => {
   const [isErrorModalActive, setIsErrorModalActive] = useState(false);
   const modalRef = useRef(null);
 
-  // Felhasználó adatok betöltése tokenből
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -228,8 +226,7 @@ const Kapcsolat = ({ onLogout }) => {
               <a href="/partnereink" className="kapcsolat-nav-link" onClick={(e) => handleNavLinkClick(e, '/partnereink')}>Partnereink</a>
             </li>
           </ul>
-          
-          {/* Fiók menü */}
+
           <div className="kapcsolat-account-menu">
             <div className="kapcsolat-account-toggle" ref={accountToggleRef} onClick={toggleDropdown}>
               <i className="fas fa-user"></i>
@@ -239,28 +236,24 @@ const Kapcsolat = ({ onLogout }) => {
                 <h3>Fiókom</h3>
               </div>
               <div className="kapcsolat-account-content">
-                
-                {/* Megrendeléseim */}
+
                 <a href="/megrendeleim" className="kapcsolat-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/megrendeleim')}>
                   <i className="fas fa-box"></i>
                   <span>Megrendeléseim</span>
                 </a>
-                
-                {/* Ajánlataim */}
+
                 <a href="/ajanlataim" className="kapcsolat-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/ajanlataim')}>
                   <i className="fas fa-file-invoice" style={{ color: '#4CAF50' }}></i>
                   <span>Ajánlataim</span>
                 </a>
-                
-                {/* Admin Dashboard - CSAK ADMINOKNAK */}
+ 
                 {user?.jogosultsag === 'admin' && (
                   <a href="/admin" className="kapcsolat-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/admin')}>
                     <i className="fas fa-cog" style={{ color: '#f39c12' }}></i>
                     <span>Admin Dashboard</span>
                   </a>
                 )}
-                
-                {/* Kijelentkezés gomb */}
+
                 <button className="kapcsolat-account-menu-item kapcsolat-logout-item" onClick={handleLogout}>
                   <i className="fas fa-sign-out-alt"></i>
                   <span>Kijelentkezés</span>
@@ -271,7 +264,6 @@ const Kapcsolat = ({ onLogout }) => {
         </div>
       </header>
 
-      {/* Hero szekció */}
       <section className="kapcsolat-hero">
         <div className="kapcsolat-hero-content">
           <h1>Lépjen kapcsolatba velünk</h1>
@@ -418,8 +410,7 @@ const Kapcsolat = ({ onLogout }) => {
                 ></textarea>
                 <div className={`kapcsolat-error-message ${formErrors.message ? 'visible' : ''}`}>{formErrors.message}</div>
               </div>
-              
-              {/* Jogi nyilatkozatok */}
+
               <div className="kapcsolat-checkbox-group">
                 <div className="kapcsolat-checkbox-item">
                   <input 
@@ -574,7 +565,6 @@ const Kapcsolat = ({ onLogout }) => {
         </div>
       </section>
 
-      {/* Sikeres üzenetküldés modal */}
       <div className={`kapcsolat-success-modal ${isSuccessModalActive ? 'active' : ''}`} ref={modalRef} onClick={handleModalClick}>
         <div className="kapcsolat-modal-content">
           <div className="kapcsolat-checkmark">
@@ -586,7 +576,6 @@ const Kapcsolat = ({ onLogout }) => {
         </div>
       </div>
 
-      {/* Sikertelen üzenetküldés modal */}
       <div className={`kapcsolat-success-modal ${isErrorModalActive ? 'active' : ''}`} ref={modalRef} onClick={handleModalClick}>
         <div className="kapcsolat-modal-content">
           <div className="kapcsolat-checkmark" style={{background: '#e74c3c'}}>

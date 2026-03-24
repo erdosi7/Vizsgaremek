@@ -1026,9 +1026,6 @@ if (require.main === module) {
   });
 }
 
-// ============= ADMIN - PARTNER (BETONGYARTOK) KEZELÉS =============
-
-// ADMIN - ÖSSZES PARTNER LISTÁZÁSA (betongyartok)
 app.get('/api/admin/partnerek', authenticateToken, async (req, res) => {
   try {
     const [user] = await db.query('SELECT jogosultsag FROM felhasznalok WHERE id = ?', [req.user.id]);
@@ -1057,7 +1054,6 @@ FROM betongyartok
   }
 });
 
-// ADMIN - ÚJ PARTNER LÉTREHOZÁSA
 app.post('/api/admin/partnerek', authenticateToken, async (req, res) => {
   try {
     const { nev, telephely_nev, latitud, longitud, napi_kapacitas } = req.body;
@@ -1098,7 +1094,6 @@ app.post('/api/admin/partnerek', authenticateToken, async (req, res) => {
 }
 });
 
-// ADMIN - PARTNER ADATOK MÓDOSÍTÁSA
 app.put('/api/admin/partnerek/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
@@ -1129,7 +1124,6 @@ app.put('/api/admin/partnerek/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// ADMIN - PARTNER TÖRLÉSE
 app.delete('/api/admin/partnerek/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;

@@ -4,8 +4,7 @@ import './Regisztracio.css';
 
 const Regisztracio = () => {
   const navigate = useNavigate();
-  
-  // Regisztrációs űrlap state
+
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -52,7 +51,6 @@ const Regisztracio = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Frontend validáció
     const errors = {};
     let isValid = true;
 
@@ -108,7 +106,6 @@ const Regisztracio = () => {
 
     if (!isValid) return;
 
-    // Backend hívás
     setIsLoading(true);
 
     try {

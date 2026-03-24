@@ -1,7 +1,5 @@
-/* --- HOME OLDAL TELJES SZÉPARÁLÁSA --- */
-
 #home-root-container {
-    all: initial; /* Ez nullázza a Login oldal összes szemét CSS szabályát */
+    all: initial; 
     display: block !important;
     background-color: #f5f7fa !important;
     color: #333 !important;
@@ -18,7 +16,6 @@
     box-sizing: border-box;
 }
 
-/* --- HEADER --- */
 #home-root-container .home-header {
     background: #2c3e50;
     color: white;
@@ -84,7 +81,6 @@
     color: #4fc3f7;
 }
 
-/* --- ACCOUNT --- */
 #home-root-container .home-user-section { position: relative; }
 #home-root-container .home-user-circle {
     width: 40px; height: 40px; background: #4fc3f7; border-radius: 50%;
@@ -101,7 +97,6 @@
 }
 #home-root-container .home-exit { border-top: 1px solid #eee; color: #e74c3c; }
 
-/* --- HERO --- */
 #home-root-container .home-hero-bg {
     background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('/images/betonlogisztika-hidbetonozas-vasszecseny-1.jpg');
     background-size: cover; background-position: center;
@@ -113,21 +108,18 @@
     border-radius: 50px; text-decoration: none; font-weight: 700;
 }
 
-/* --- SECTIONS --- */
 #home-root-container .home-content-section { padding: 80px 0; }
 #home-root-container .home-main-title { text-align: center; margin-bottom: 50px; font-size: 32px; color: #2c3e50; }
 #home-root-container .home-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 #home-root-container .home-info-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
 #home-root-container .home-card-icon { font-size: 48px; color: #2c3e50; margin-bottom: 20px; }
 
-/* --- ABOUT --- */
 #home-root-container .home-about-section { background: #2c3e50; color: white; padding: 80px 0; width: 100%; }
 #home-root-container .home-about-flex { display: flex; align-items: center; gap: 50px; }
 #home-root-container .home-about-img-wrap img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 #home-root-container .home-stat-row { display: flex; gap: 30px; margin-top: 30px; }
 #home-root-container .home-stat-val { display: block; font-size: 36px; font-weight: 700; color: #4fc3f7; }
 
-/* --- SERVICES --- */
 #home-root-container .home-light-gray { background: #eef2f7; }
 #home-root-container .home-service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 #home-root-container .home-job-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -136,12 +128,10 @@
 #home-root-container .home-img-2 { background-image: url('/images/betonlogisztika-hidbetonozas.jpg'); }
 #home-root-container .home-job-text { padding: 25px; }
 
-/* --- FOOTER --- */
 #home-root-container .home-site-footer { background: #1a252f; color: white; padding: 40px 0; text-align: center; width: 100%; }
 #home-root-container .home-social-icons { margin-top: 15px; font-size: 20px; }
 #home-root-container .home-social-icons a { color: white; margin: 0 10px; }
 
-/* --- MODAL --- */
 #home-root-container .home-modal-mask { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center; }
 #home-root-container .home-modal-box { background: white; padding: 40px; border-radius: 15px; text-align: center; color: #333; max-width: 400px; }
 #home-root-container .home-modal-icon { width: 70px; height: 70px; background: #4fc3f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 30px; }

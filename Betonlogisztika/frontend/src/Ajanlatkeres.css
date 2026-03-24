@@ -477,7 +477,6 @@ textarea.ajanlatkeres-form-control {
     font-size: 18px;
 }
 
-/* Disabled select opciók */
 .ajanlatkeres-form-control option:disabled {
     color: #999;
     font-style: italic;

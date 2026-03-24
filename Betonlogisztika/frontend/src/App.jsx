@@ -14,8 +14,6 @@ import Megrendeleim from './Megrendeleim';
 import './App.css';
 import AdminDashboard from './AdminDashboard';
 
-
-// Login komponens
 function LoginPage({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,8 +39,7 @@ function LoginPage({ onLoginSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Frontend validáció
+
     let newErrors = { email: '', password: '' };
     let isValid = true;
     
@@ -63,8 +60,7 @@ function LoginPage({ onLoginSuccess }) {
     setServerError('');
     
     if (!isValid) return;
-    
-    // Backend hívás
+
     setIsLoading(true);
     
     try {
@@ -79,7 +75,6 @@ function LoginPage({ onLoginSuccess }) {
       const data = await response.json();
       
       if (data.success) {
-        // Token mentése
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         setIsSuccess(true);
@@ -146,7 +141,6 @@ function LoginPage({ onLoginSuccess }) {
               {errors.password && <div className="error-message visible">{errors.password}</div>}
             </div>
 
-            {/* Szerver hibaüzenet */}
             {serverError && (
               <div className="error-message visible" style={{ textAlign: 'center', marginBottom: '10px' }}>
                 {serverError}
@@ -184,38 +178,33 @@ function LoginPage({ onLoginSuccess }) {
   );
 }
 
-// Fő App komponens
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Ellenőrizzük, hogy van-e token
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, []);
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    // A token már el van mentve a LoginPage-ben
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('isLoggedIn'); // Régi kulcs törlése
+    localStorage.removeItem('isLoggedIn'); 
     setIsLoggedIn(false);
   };
 
   return (
     <Router>
       <Routes>
-        {/* ✅ NYILVÁNOS OLDALAK - bejelentkezés NÉLKÜL is elérhetők */}
         <Route path="/regisztracio" element={<Regisztracio />} />
         <Route path="/impresszum" element={<Impresszum />} />
         <Route path="/adatvedelmi_nyil" element={<AdatvedelmiNyil />} />
         <Route path="/alt_szer_felt" element={<AltSzerFelt />} />
-        
-        {/* 🔐 BEJELENTKEZÉS KÖTELEZŐ oldalak - CSAK isLoggedIn esetén */}
+
         <Route 
           path="/" 
           element={

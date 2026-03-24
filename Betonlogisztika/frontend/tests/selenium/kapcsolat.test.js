@@ -1,5 +1,3 @@
- // frontend/tests/selenium/kapcsolat.test.js
-
 import { Builder, By, until } from 'selenium-webdriver';
 import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
 import 'chromedriver';

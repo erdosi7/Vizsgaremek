@@ -9,7 +9,6 @@ describe('DELETE /api/megrendelesek/:id', () => {
   let testEmail = `megrendelesdel${Date.now()}@email.hu`;
 
   beforeAll(async () => {
-    // 1. Regisztráció
     await request(app)
       .post('/api/register')
       .send({
@@ -19,19 +18,16 @@ describe('DELETE /api/megrendelesek/:id', () => {
         telefon: '+36 30 111 2222'
       });
 
-    // 2. User bejelentkezés
     const userLogin = await request(app)
       .post('/api/login')
       .send({ email: testEmail, jelszo: '123456' });
     userToken = userLogin.body.token;
 
-    // 3. Admin bejelentkezés
     const adminLogin = await request(app)
       .post('/api/login')
       .send({ email: 'admin@gmail.com', jelszo: 'admin67' });
     adminToken = adminLogin.body.token;
 
-    // 4. Ajánlat létrehozása
     const ajanlatRes = await request(app)
       .post('/api/ajanlatok')
       .set('Authorization', `Bearer ${userToken}`)
@@ -52,13 +48,11 @@ describe('DELETE /api/megrendelesek/:id', () => {
       });
     ajanlatId = ajanlatRes.body.ajanlat.id;
 
-    // 5. Admin elfogadja
     await request(app)
       .put(`/api/admin/ajanlatok/${ajanlatId}/status`)
       .set('Authorization', `Bearer ${adminToken}`)
       .send({ statusz: 'elfogadva' });
 
-    // 6. Megrendelés leadása
     const rendelesRes = await request(app)
       .post('/api/megrendelesek')
       .set('Authorization', `Bearer ${userToken}`)
@@ -76,7 +70,6 @@ describe('DELETE /api/megrendelesek/:id', () => {
       });
     megrendelesId = rendelesRes.body.megrendeles.id;
 
-    // 7. Admin sikertelenre állítja (hogy törölhető legyen)
     await request(app)
       .put(`/api/admin/megrendelesek/${megrendelesId}/status`)
       .set('Authorization', `Bearer ${adminToken}`)
@@ -109,7 +102,6 @@ describe('DELETE /api/megrendelesek/:id', () => {
   });
 
   it('más user rendelését nem lehet törölni', async () => {
-    // Hozzunk létre egy másik usert
     const masikEmail = `masik${Date.now()}@email.hu`;
     await request(app)
       .post('/api/register')
@@ -133,7 +125,6 @@ describe('DELETE /api/megrendelesek/:id', () => {
   });
 
   it('nem sikertelen státuszú rendelést nem lehet törölni', async () => {
-    // Új rendelés (nem lesz sikertelen)
     const ujAjanlat = await request(app)
       .post('/api/ajanlatok')
       .set('Authorization', `Bearer ${userToken}`)

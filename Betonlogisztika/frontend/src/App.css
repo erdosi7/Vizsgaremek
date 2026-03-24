@@ -1,5 +1,3 @@
-/* App.css - Login oldal stílusok */
-
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +19,6 @@
     position: relative;
 }
 
-/* Homályosított overlay */
 .login-page::before {
     content: '';
     position: absolute;
@@ -34,7 +31,6 @@
     pointer-events: none;
 }
 
-/* Még egy réteg a mélységért */
 .login-page::after {
     content: '';
     position: absolute;
@@ -267,7 +263,6 @@
     box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
 }
 
-/* Sikeres bejelentkezés overlay */
 .success-overlay {
     position: fixed;
     top: 0;

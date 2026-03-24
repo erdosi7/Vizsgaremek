@@ -8,24 +8,19 @@ const Megrendeleim = ({ onLogout }) => {
   const dropdownRef = useRef(null);
   const accountToggleRef = useRef(null);
   const [user, setUser] = useState(null);
-  
-  // Szűrési állapot
+
   const [filterStatus, setFilterStatus] = useState('all');
-  
-  // Admin jogosultság
+
   const [isAdmin, setIsAdmin] = useState(false);
-  
-  // Megrendelések listája
+
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Törlés modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [orderToDelete, setOrderToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Felhasználó adatok betöltése és megrendelések lekérése
   useEffect(() => {
     loadUserData();
     loadOrders();
@@ -74,9 +69,8 @@ const Megrendeleim = ({ onLogout }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Feldolgozzuk a megrendeléseket a megjelenítéshez
+        
         const processedOrders = data.megrendelesek.map(order => {
-          // Státusz osztály meghatározása
           let statusClass = '';
           switch(order.statusz) {
             case 'feldolgozás alatt': statusClass = 'processing'; break;
@@ -118,7 +112,6 @@ const Megrendeleim = ({ onLogout }) => {
     }
   };
 
-  // Admin státusz módosítás
   const handleStatusChange = async (orderId, newStatus) => {
     const token = localStorage.getItem('token');
     if (!token || !isAdmin) return;
@@ -136,7 +129,6 @@ const Megrendeleim = ({ onLogout }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Frissítjük a lokális listát
         let statusClass = '';
         switch(newStatus) {
           case 'feldolgozás alatt': statusClass = 'processing'; break;
@@ -165,9 +157,7 @@ const Megrendeleim = ({ onLogout }) => {
     }
   };
 
-  // Törlés - CSAK SIKERTELEN MEGRENDELÉSEKNÉL!
   const handleDeleteClick = (order) => {
-    // Csak akkor engedélyezzük a törlést, ha a státusz 'sikertelen'
     if (order.statusClass !== 'failed') {
       alert('Csak sikertelen státuszú megrendelés törölhető!');
       return;
@@ -183,7 +173,6 @@ const Megrendeleim = ({ onLogout }) => {
     setIsDeleting(true);
 
     try {
-      // TÖRLÉS AZ ADATBÁZISBÓL!
       const response = await fetch(`http://localhost:3000/api/megrendelesek/${orderToDelete.id}`, {
         method: 'DELETE',
         headers: {
@@ -195,7 +184,6 @@ const Megrendeleim = ({ onLogout }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Sikeres törlés után eltávolítjuk a listából
         setOrders(orders.filter(order => order.id !== orderToDelete.id));
         setShowDeleteModal(false);
         setOrderToDelete(null);
@@ -264,13 +252,11 @@ const Megrendeleim = ({ onLogout }) => {
     navigate('/');
   };
 
-  // Szűrési függvény
   const getFilteredOrders = () => {
     if (filterStatus === 'all') return orders;
     return orders.filter(order => order.statusClass === filterStatus);
   };
 
-  // Státusz badge színének meghatározása
   const getStatusBadgeClass = (statusClass) => {
     switch(statusClass) {
       case 'processing': return 'processing';
@@ -281,7 +267,6 @@ const Megrendeleim = ({ onLogout }) => {
     }
   };
 
-  // Státusz ikon meghatározása
   const getStatusIcon = (statusClass) => {
     switch(statusClass) {
       case 'processing': return 'fa-clock';
@@ -317,8 +302,7 @@ const Megrendeleim = ({ onLogout }) => {
               <a href="/partnereink" className="megrendeleim-nav-link" onClick={(e) => handleNavLinkClick(e, '/partnereink')}>Partnereink</a>
             </li>
           </ul>
-          
-          {/* Fiók menü */}
+
           <div className="megrendeleim-account-menu">
             <div className="megrendeleim-account-toggle" ref={accountToggleRef} onClick={toggleDropdown}>
               <i className="fas fa-user"></i>
@@ -328,28 +312,24 @@ const Megrendeleim = ({ onLogout }) => {
                 <h3>Fiókom</h3>
               </div>
               <div className="megrendeleim-account-content">
-                
-                {/* Megrendeléseim - aktív */}
+ 
                 <a href="/megrendeleim" className="megrendeleim-account-menu-item active" onClick={(e) => handleNavLinkClick(e, '/megrendeleim')}>
                   <i className="fas fa-box"></i>
                   <span>Megrendeléseim</span>
                 </a>
-                
-                {/* Ajánlataim */}
+
                 <a href="/ajanlataim" className="megrendeleim-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/ajanlataim')}>
                   <i className="fas fa-file-invoice" style={{ color: '#4CAF50' }}></i>
                   <span>Ajánlataim</span>
                 </a>
-                
-                {/* Admin Dashboard - CSAK ADMINOKNAK */}
+
                 {user?.jogosultsag === 'admin' && (
                   <a href="/admin" className="megrendeleim-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/admin')}>
                     <i className="fas fa-cog" style={{ color: '#f39c12' }}></i>
                     <span>Admin Dashboard</span>
                   </a>
                 )}
-                
-                {/* Kijelentkezés gomb */}
+
                 <button className="megrendeleim-account-menu-item megrendeleim-logout-item" onClick={handleLogout}>
                   <i className="fas fa-sign-out-alt"></i>
                   <span>Kijelentkezés</span>
@@ -360,7 +340,6 @@ const Megrendeleim = ({ onLogout }) => {
         </div>
       </header>
 
-      {/* Hero szekció */}
       <section className="megrendeleim-hero">
         <div className="megrendeleim-hero-content">
           <h1>Megrendeléseim</h1>
@@ -369,14 +348,13 @@ const Megrendeleim = ({ onLogout }) => {
       </section>
 
       <section className="megrendeleim-container">
-        {/* Admin jelző */}
+
         {isAdmin && (
           <div className="megrendeleim-admin-badge">
             <i className="fas fa-crown"></i> Admin mód
           </div>
         )}
 
-        {/* Szűrő gombok */}
         <div className="megrendeleim-filter">
           <button 
             className={`megrendeleim-filter-btn ${filterStatus === 'all' ? 'active' : ''}`}
@@ -410,7 +388,6 @@ const Megrendeleim = ({ onLogout }) => {
           </button>
         </div>
 
-        {/* Megrendelések listája */}
         <div className="megrendeleim-orders">
           {isLoading ? (
             <div className="megrendeleim-loading">
@@ -436,7 +413,7 @@ const Megrendeleim = ({ onLogout }) => {
                       </span>
                     </div>
                     <div className="megrendeleim-order-actions">
-                      {/* Törlés gomb - CSAK SIKERTELEN STÁTUSZNÁL, NAGY PIROS X */}
+
                       {order.statusClass === 'failed' && (
                         <button 
                           className="megrendeleim-order-btn-delete"
@@ -446,8 +423,7 @@ const Megrendeleim = ({ onLogout }) => {
                           <i className="fas fa-times-circle"></i>
                         </button>
                       )}
-                      
-                      {/* Státusz módosítás - csak admin */}
+
                       {isAdmin && (
                         <select 
                           className="megrendeleim-status-select"
@@ -535,7 +511,6 @@ const Megrendeleim = ({ onLogout }) => {
         </div>
       </section>
 
-      {/* Törlés megerősítő modal */}
       {showDeleteModal && (
         <div className="megrendeleim-modal-overlay" onClick={cancelDelete}>
           <div className="megrendeleim-modal-content" onClick={(e) => e.stopPropagation()}>

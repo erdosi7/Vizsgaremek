@@ -9,7 +9,6 @@ const Impresszum = ({ onLogout }) => {
   const accountToggleRef = useRef(null);
   const [user, setUser] = useState(null);
 
-  // Felhasználó adatok betöltése tokenből
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -100,8 +99,7 @@ const Impresszum = ({ onLogout }) => {
               <a href="/impresszum" className="impresszum-nav-link active" onClick={(e) => handleNavLinkClick(e, '/impresszum')}>Impresszum</a>
             </li>
           </ul>
-          
-          {/* Fiók menü */}
+
           <div className="impresszum-account-menu">
             <div className="impresszum-account-toggle" ref={accountToggleRef} onClick={toggleDropdown}>
               <i className="fas fa-user"></i>
@@ -111,28 +109,24 @@ const Impresszum = ({ onLogout }) => {
                 <h3>Fiókom</h3>
               </div>
               <div className="impresszum-account-content">
-                
-                {/* Megrendeléseim */}
+
                 <a href="/megrendeleim" className="impresszum-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/megrendeleim')}>
                   <i className="fas fa-box"></i>
                   <span>Megrendeléseim</span>
                 </a>
-                
-                {/* Ajánlataim */}
+
                 <a href="/ajanlataim" className="impresszum-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/ajanlataim')}>
                   <i className="fas fa-file-invoice" style={{ color: '#4CAF50' }}></i>
                   <span>Ajánlataim</span>
                 </a>
-                
-                {/* Admin Dashboard - CSAK ADMINOKNAK */}
+
                 {user?.jogosultsag === 'admin' && (
                   <a href="/admin" className="impresszum-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/admin')}>
                     <i className="fas fa-cog" style={{ color: '#f39c12' }}></i>
                     <span>Admin Dashboard</span>
                   </a>
                 )}
-                
-                {/* Kijelentkezés gomb */}
+
                 <button className="impresszum-account-menu-item impresszum-logout-item" onClick={handleLogout}>
                   <i className="fas fa-sign-out-alt"></i>
                   <span>Kijelentkezés</span>
@@ -143,7 +137,6 @@ const Impresszum = ({ onLogout }) => {
         </div>
       </header>
 
-      {/* Hero szekció */}
       <section className="impresszum-hero">
         <div className="impresszum-hero-content">
           <h1>Impresszum</h1>

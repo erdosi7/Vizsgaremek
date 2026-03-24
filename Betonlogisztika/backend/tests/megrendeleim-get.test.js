@@ -9,7 +9,7 @@ describe('GET /api/megrendeleim', () => {
   let testEmail = `megrendeleimget${Date.now()}@email.hu`;
 
   beforeAll(async () => {
-    // 1. Regisztráció
+
     await request(app)
       .post('/api/register')
       .send({
@@ -19,19 +19,16 @@ describe('GET /api/megrendeleim', () => {
         telefon: '+36 30 111 2222'
       });
 
-    // 2. User bejelentkezés
     const userLogin = await request(app)
       .post('/api/login')
       .send({ email: testEmail, jelszo: '123456' });
     userToken = userLogin.body.token;
 
-    // 3. Admin bejelentkezés
     const adminLogin = await request(app)
       .post('/api/login')
       .send({ email: 'admin@gmail.com', jelszo: 'admin67' });
     adminToken = adminLogin.body.token;
 
-    // 4. Ajánlat létrehozása
     const ajanlatRes = await request(app)
       .post('/api/ajanlatok')
       .set('Authorization', `Bearer ${userToken}`)
@@ -51,14 +48,12 @@ describe('GET /api/megrendeleim', () => {
         tavolsag_keszthelytol: 0
       });
     ajanlatId = ajanlatRes.body.ajanlat.id;
-
-    // 5. Admin elfogadja
+  
     await request(app)
       .put(`/api/admin/ajanlatok/${ajanlatId}/status`)
       .set('Authorization', `Bearer ${adminToken}`)
       .send({ statusz: 'elfogadva' });
 
-    // 6. Megrendelés leadása
     const rendelesRes = await request(app)
       .post('/api/megrendelesek')
       .set('Authorization', `Bearer ${userToken}`)
@@ -134,7 +129,6 @@ describe('GET /api/megrendeleim', () => {
   });
 
   it('üres lista esetén is 200 OK', async () => {
-    // Új user, akinek nincs rendelése
     const ujEmail = `uj${Date.now()}@email.hu`;
     await request(app)
       .post('/api/register')

@@ -15,14 +15,12 @@ const AdminDashboard = ({ onLogout }) => {
   const [error, setError] = useState('');
   const [user, setUser] = useState(null);
   
-  // Szűrési és keresési állapotok
   const [ajanlatFilter, setAjanlatFilter] = useState('all');
   const [megrendelesFilter, setMegrendelesFilter] = useState('all');
   const [ajanlatSearch, setAjanlatSearch] = useState('');
   const [megrendelesSearch, setMegrendelesSearch] = useState('');
   const [felhasznaloSearch, setFelhasznaloSearch] = useState('');
 
-  // Partner kezelés állapotok
   const [partnerek, setPartnerek] = useState([]);
   const [showPartnerModal, setShowPartnerModal] = useState(false);
   const [editingPartner, setEditingPartner] = useState(null);
@@ -50,7 +48,6 @@ const AdminDashboard = ({ onLogout }) => {
     telefon: ''
   });
 
-  // Szerkesztési és törlési állapotok
   const [editingUser, setEditingUser] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -169,7 +166,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Partner adatok betöltése
   const loadPartnerek = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -185,7 +181,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Felhasználó műveletek
   const handleEditClick = (user) => {
     setEditingUser(user);
     setEditFormData({
@@ -273,7 +268,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Admin - Ajánlat törlése
   const handleDeleteAjanlatClick = (ajanlat) => {
     setAjanlatToDelete(ajanlat);
     setShowDeleteAjanlatModal(true);
@@ -304,7 +298,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Admin - Megrendelés törlése
   const handleDeleteMegrendelesClick = (megrendeles) => {
     setMegrendelesToDelete(megrendeles);
     setShowDeleteMegrendelesModal(true);
@@ -371,7 +364,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Partner műveletek
   const handleNewPartnerSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
@@ -480,7 +472,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Státusz módosítások
   const handleAjanlatStatusChange = async (ajanlatId, newStatus) => {
     const token = localStorage.getItem('token');
     try {
@@ -519,7 +510,6 @@ const AdminDashboard = ({ onLogout }) => {
     }
   };
 
-  // Szűrés és keresés
   const getFilteredAjanlatok = () => {
     let filtered = ajanlatok;
     if (ajanlatFilter !== 'all') filtered = filtered.filter(a => a.statusz === ajanlatFilter);
@@ -560,7 +550,6 @@ const AdminDashboard = ({ onLogout }) => {
     );
   };
 
-  // Szűrt partnerek
   const getFilteredPartnerek = () => {
     if (partnerSearch.trim() === '') return partnerek;
     const searchLower = partnerSearch.toLowerCase();
@@ -570,7 +559,6 @@ const AdminDashboard = ({ onLogout }) => {
     );
   };
 
-  // Formázások
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('hu-HU');
   };
@@ -579,7 +567,6 @@ const AdminDashboard = ({ onLogout }) => {
     return new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(price);
   };
 
-  // AJÁNLAT STÁTUSZ BADGE
   const getAjanlatStatusBadgeClass = (status) => {
     const map = {
       'függőben': 'pending',
@@ -590,7 +577,6 @@ const AdminDashboard = ({ onLogout }) => {
     return map[status] || '';
   };
 
-  // MEGRENDELÉS STÁTUSZ BADGE
   const getMegrendelesStatusBadgeClass = (status) => {
     const map = {
       'feldolgozás alatt': 'processing',
@@ -601,7 +587,6 @@ const AdminDashboard = ({ onLogout }) => {
     return map[status] || '';
   };
 
-  // Statisztikák
   const stat = {
     ajanlat: {
       osszes: ajanlatok.length,
@@ -699,7 +684,6 @@ const AdminDashboard = ({ onLogout }) => {
           </div>
         </div>
 
-        {/* Statisztikák */}
         <div className="admin-stats-grid">
           {activeTab === 'ajanlatok' && (
             <>
@@ -866,7 +850,6 @@ const AdminDashboard = ({ onLogout }) => {
           )}
         </div>
 
-        {/* Tabok */}
         <div className="admin-tabs">
           <button className={`admin-tab ${activeTab === 'ajanlatok' ? 'active' : ''}`} onClick={() => setActiveTab('ajanlatok')}>
             <i className="fas fa-file-invoice"></i> Ajánlatok 
@@ -889,7 +872,6 @@ const AdminDashboard = ({ onLogout }) => {
           </button>
         </div>
 
-        {/* Szűrők és keresők */}
         {activeTab === 'ajanlatok' && (
           <div className="admin-filter-row">
             <div className="admin-search-group">
@@ -982,7 +964,6 @@ const AdminDashboard = ({ onLogout }) => {
           </div>
         )}
 
-        {/* Tartalom */}
         <div className="admin-content">
           {isLoading ? (
             <div className="admin-loading"><i className="fas fa-spinner fa-spin"></i> Betöltés...</div>
@@ -1219,7 +1200,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       </div>
 
-      {/* Szerkesztés Modal - User */}
       {showEditModal && editingUser && (
         <div className="admin-modal-overlay" onClick={() => setShowEditModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1257,7 +1237,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Új felhasználó Modal */}
       {showNewUserModal && (
         <div className="admin-modal-overlay" onClick={() => setShowNewUserModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1299,7 +1278,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Törlés Modal - Felhasználó */}
       {showDeleteModal && userToDelete && (
         <div className="admin-modal-overlay" onClick={() => setShowDeleteModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1317,7 +1295,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Törlés Modal - Ajánlat */}
       {showDeleteAjanlatModal && ajanlatToDelete && (
         <div className="admin-modal-overlay" onClick={() => setShowDeleteAjanlatModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1336,7 +1313,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Törlés Modal - Megrendelés */}
       {showDeleteMegrendelesModal && megrendelesToDelete && (
         <div className="admin-modal-overlay" onClick={() => setShowDeleteMegrendelesModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1355,7 +1331,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Törlés modal - Partner */}
       {showDeletePartnerModal && partnerToDelete && (
         <div className="admin-modal-overlay" onClick={() => setShowDeletePartnerModal(false)}>
           <div className="admin-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -1377,7 +1352,6 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       )}
 
-      {/* Partner szerkesztés/új modal */}
       {showPartnerModal && (
         <div className="admin-modal-overlay" onClick={() => setShowPartnerModal(false)}>
           <div className="admin-modal-content admin-modal-large" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>

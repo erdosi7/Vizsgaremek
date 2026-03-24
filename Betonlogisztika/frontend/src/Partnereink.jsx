@@ -9,20 +9,16 @@ const Partnereink = ({ onLogout }) => {
   const accountToggleRef = useRef(null);
   const [user, setUser] = useState(null);
   
-  // Térkép referencia
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
 
-  // Partnerek state
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Kiválasztott partner
   const [selectedPartner, setSelectedPartner] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
 
-  // Felhasználó adatok betöltése tokenből
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -37,7 +33,6 @@ const Partnereink = ({ onLogout }) => {
     }
   }, []);
 
-  // Partnerek betöltése az adatbázisból
 useEffect(() => {
   const loadPartners = async () => {
     try {
@@ -47,7 +42,7 @@ useEffect(() => {
       });
       const data = await response.json();
       if (data.success) {
-        // Átalakítás a térkép számára
+
         const formattedPartners = data.partnerek.map(p => ({
           id: p.id,
           name: p.nev,
@@ -55,8 +50,8 @@ useEffect(() => {
           coords: [parseFloat(p.latitud), parseFloat(p.longitud)],
           address: p.telephely_nev,
           shortName: p.nev.split(' ')[0] || p.nev.substring(0, 8),
-          website: p.website || '#', // <-- EZ KELL!
-          phone: p.telefon || '+36 30 123 4567' // <-- EZ IS JÓL JÖNNE
+          website: p.website || '#',
+          phone: p.telefon || '+36 30 123 4567'
         }));
         setPartners(formattedPartners);
       }
@@ -102,10 +97,9 @@ useEffect(() => {
     };
   }, []);
 
-  // Térkép inicializálása
   useEffect(() => {
     if (!mapInstanceRef.current && mapRef.current && typeof L !== 'undefined' && partners.length > 0 && !loading) {
-      // Térkép létrehozása
+
       const map = L.map(mapRef.current).setView([46.9541, 17.5861], 9);
       
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -113,10 +107,9 @@ useEffect(() => {
       }).addTo(map);
       
       mapInstanceRef.current = map;
-      
-      // Egyedi ikon létrehozása a cég nevével
+  
       partners.forEach(partner => {
-        // Egyedi HTML ikon létrehozása
+
         const customIcon = L.divIcon({
           className: 'partnereink-custom-marker',
           html: `<div class="partnereink-marker-content">
@@ -158,14 +151,12 @@ useEffect(() => {
   };
 
   const filterMarkers = (region) => {
-    // Ez a funkció most nem használatos, mert nincs régió adat
-    // Ha szeretnéd, később hozzáadhatod a régió szűrést
+  
   };
 
   const handleRegionFilter = (e, region) => {
     e.preventDefault();
-    
-    // Aktív gomb beállítása
+ 
     document.querySelectorAll('.partnereink-map-btn').forEach(btn => {
       btn.classList.remove('active');
     });
@@ -178,14 +169,12 @@ useEffect(() => {
     <>
       <header className="partnereink-header">
         <div className="partnereink-header-container">
-          
-          {/* LOGO */}
+       
           <a href="/" className="partnereink-logo" onClick={(e) => handleNavLinkClick(e, '/')}>
             <div className="partnereink-logo-icon"></div>
             <div className="partnereink-logo-text">BetonLogisztika</div>
           </a>
-          
-          {/* NAV MENÜ */}
+       
           <ul className="partnereink-nav-menu">
             <li className="partnereink-nav-item">
               <a href="/" className="partnereink-nav-link" onClick={(e) => handleNavLinkClick(e, '/')}>Kezdőoldal</a>
@@ -203,8 +192,7 @@ useEffect(() => {
               <a href="/partnereink" className="partnereink-nav-link active" onClick={(e) => handleNavLinkClick(e, '/partnereink')}>Partnereink</a>
             </li>
           </ul>
-          
-          {/* FIÓK MENÜ */}
+        
           <div className="partnereink-account-menu">
             <div className="partnereink-account-toggle" ref={accountToggleRef} onClick={toggleDropdown}>
               <i className="fas fa-user"></i>
@@ -214,28 +202,24 @@ useEffect(() => {
                 <h3>Fiókom</h3>
               </div>
               <div className="partnereink-account-content">
-                
-                {/* Megrendeléseim */}
+           
                 <a href="/megrendeleim" className="partnereink-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/megrendeleim')}>
                   <i className="fas fa-box"></i>
                   <span>Megrendeléseim</span>
                 </a>
-                
-                {/* Ajánlataim */}
+              
                 <a href="/ajanlataim" className="partnereink-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/ajanlataim')}>
                   <i className="fas fa-file-invoice" style={{ color: '#4CAF50' }}></i>
                   <span>Ajánlataim</span>
                 </a>
-                
-                {/* Admin Dashboard - CSAK ADMINOKNAK */}
+             
                 {user?.jogosultsag === 'admin' && (
                   <a href="/admin" className="partnereink-account-menu-item" onClick={(e) => handleNavLinkClick(e, '/admin')}>
                     <i className="fas fa-cog" style={{ color: '#f39c12' }}></i>
                     <span>Admin Dashboard</span>
                   </a>
                 )}
-                
-                {/* Kijelentkezés gomb */}
+           
                 <button className="partnereink-account-menu-item partnereink-logout-item" onClick={handleLogout}>
                   <i className="fas fa-sign-out-alt"></i>
                   <span>Kijelentkezés</span>
@@ -244,10 +228,9 @@ useEffect(() => {
             </div>
           </div>
           
-        </div> {/* partnereink-header-container vége */}
+        </div> 
       </header>
 
-      {/* Hero szekció - 115px magas, ugyanaz a kép */}
       <section className="partnereink-hero">
         <div className="partnereink-hero-content">
           <h1>Partnereink</h1>
@@ -255,7 +238,6 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Csatlakozzon partnereinkhez - FINOMABB SZÍNEK, AZ OLDAL TETEJÉN */}
       <section className="partnereink-join-top">
         <div className="partnereink-join-top-container">
           <div className="partnereink-join-top-content">
@@ -269,7 +251,6 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Térkép szekció */}
       <section className="partnereink-map-section">
         <div className="partnereink-map-container">
           <h2 className="partnereink-section-title">Partnereink elhelyezkedése</h2>
@@ -287,7 +268,6 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Kiválasztott partner részletei - közvetlenül a térkép alatt */}
       {selectedPartner && (
         <section className="partnereink-selected-partner" id={`partner-details-${selectedPartner.id}`}>
           <div className="partnereink-selected-container">
@@ -327,7 +307,6 @@ useEffect(() => {
         </section>
       )}
 
-      {/* Együttműködési előnyök - visszarakva az oldal aljára */}
       <section className="partnereink-benefits-bottom">
         <div className="partnereink-benefits-bottom-container">
           <h2 className="partnereink-section-title">Az együttműködés előnyei</h2>
