@@ -39,9 +39,6 @@ A bejelentkezést követően a felhasználó az alábbi funkciókat érheti el:
 - **Rendeléskövetés**  
   A felhasználó valós időben nyomon követheti rendelése állapotát.
 
-- **Sofőrök elérhetősége**  
-  Látható, hogy az adott sofőr foglalt-e vagy elérhető.
-
 - **Kapcsolat és információk**  
   Gyors kapcsolatteremtést biztosító elérhetőségi adatok.
 
