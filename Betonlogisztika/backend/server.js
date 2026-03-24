@@ -1159,4 +1159,27 @@ app.delete('/api/admin/partnerek/:id', authenticateToken, async (req, res) => {
   }
 });
 
+app.get('/api/partnerek', authenticateToken, async (req, res) => {
+  try {
+    const [partnerek] = await db.query(`
+      SELECT 
+        id,
+        nev,
+        telephely_nev,
+        latitude AS latitud,
+        longitude AS longitud,
+        napi_kapacitas,
+        website,
+        telefon
+      FROM betongyartok
+      ORDER BY nev ASC, telephely_nev ASC
+    `);
+
+    res.json({ success: true, partnerek });
+  } catch (error) {
+    console.error('❌ Partnerek lekérési hiba:', error);
+    res.status(500).json({ success: false, message: 'Szerver hiba' });
+  }
+});
+
 module.exports = app;

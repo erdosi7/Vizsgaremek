@@ -37,7 +37,7 @@ useEffect(() => {
   const loadPartners = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/partnerek', {
+      const response = await fetch('http://localhost:3000/api/partnerek', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
