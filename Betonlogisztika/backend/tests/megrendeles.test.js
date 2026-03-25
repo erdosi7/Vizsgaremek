@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../app');
 
 describe('POST /api/megrendelesek', () => {
   let userToken;
@@ -10,7 +10,6 @@ describe('POST /api/megrendelesek', () => {
   let adminJelszo = 'admin67';
 
   beforeAll(async () => {
-
     await request(app)
       .post('/api/register')
       .send({
@@ -46,7 +45,7 @@ describe('POST /api/megrendelesek', () => {
         betongyarto_id: 1,
         mennyiseg: 10,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-20",
+        szallitas_datum: "2026-03-30",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -56,7 +55,12 @@ describe('POST /api/megrendelesek', () => {
         tavolsag_keszthelytol: 0
       });
     
-    ajanlatId = ajanlatRes.body.ajanlat.id;
+    if (ajanlatRes.body && ajanlatRes.body.ajanlat && ajanlatRes.body.ajanlat.id) {
+      ajanlatId = ajanlatRes.body.ajanlat.id;
+    } else {
+      console.error('Ajánlat létrehozás sikertelen:', ajanlatRes.body);
+      return;
+    }
 
     await request(app)
       .put(`/api/admin/ajanlatok/${ajanlatId}/status`)
@@ -100,7 +104,7 @@ describe('POST /api/megrendelesek', () => {
         betongyarto_id: 1,
         mennyiseg: 5,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-21",
+        szallitas_datum: "2026-03-31",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -109,6 +113,11 @@ describe('POST /api/megrendelesek', () => {
         longitude: 17.242267,
         tavolsag_keszthelytol: 0
       });
+
+    if (!ujAjanlat.body || !ujAjanlat.body.ajanlat) {
+      console.error('Ajánlat létrehozás sikertelen:', ujAjanlat.body);
+      return;
+    }
 
     const response = await request(app)
       .post('/api/megrendelesek')
@@ -177,7 +186,6 @@ describe('POST /api/megrendelesek', () => {
       .set('Authorization', `Bearer ${userToken}`)
       .send({
         ajanlat_id: ajanlatId
-
       });
 
     expect(response.statusCode).toBe(400);

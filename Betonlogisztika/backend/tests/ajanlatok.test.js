@@ -1,12 +1,11 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../app');
 
 describe('POST /api/ajanlatok', () => {
   let userToken;
   let testEmail = `ajanlat${Date.now()}@email.hu`;
 
   beforeAll(async () => {
-
     await request(app)
       .post('/api/register')
       .send({
@@ -37,7 +36,7 @@ describe('POST /api/ajanlatok', () => {
         betongyarto_id: 1,
         mennyiseg: 10,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-20",
+        szallitas_datum: "2026-04-01",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -47,6 +46,7 @@ describe('POST /api/ajanlatok', () => {
         tavolsag_keszthelytol: 0
       });
 
+    console.log('Válasz:', response.body);
     expect(response.statusCode).toBe(201);
     expect(response.body.success).toBe(true);
     expect(response.body.ajanlat).toHaveProperty('ajanlatszam');
@@ -71,9 +71,7 @@ describe('POST /api/ajanlatok', () => {
     const response = await request(app)
       .post('/api/ajanlatok')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({
-
-      });
+      .send({});
 
     expect(response.statusCode).toBe(400);
   });
@@ -88,7 +86,7 @@ describe('POST /api/ajanlatok', () => {
         betongyarto_id: 1,
         mennyiseg: 1000,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-20",
+        szallitas_datum: "2026-04-02",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",

@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../app');
 
 describe('GET /api/ajanlataim', () => {
   let userToken;
@@ -36,7 +36,7 @@ describe('GET /api/ajanlataim', () => {
         betongyarto_id: 1,
         mennyiseg: 12,
         pumpa_szukseges: true,
-        szallitas_datum: "2026-03-25",
+        szallitas_datum: "2026-04-20",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -45,6 +45,12 @@ describe('GET /api/ajanlataim', () => {
         longitude: 17.242267,
         tavolsag_keszthelytol: 0
       });
+    
+    if (!ajanlatRes.body || !ajanlatRes.body.ajanlat) {
+      console.error('Ajánlat létrehozás sikertelen:', ajanlatRes.body);
+      throw new Error('Ajánlat létrehozás sikertelen');
+    }
+    
     ajanlatId = ajanlatRes.body.ajanlat.id;
   });
 
@@ -60,7 +66,7 @@ describe('GET /api/ajanlataim', () => {
     
     const found = response.body.ajanlatok.find(a => a.id === ajanlatId);
     expect(found).toBeDefined();
-  expect(parseFloat(found.mennyiseg)).toBe(12);
+    expect(parseFloat(found.mennyiseg)).toBe(12);
     expect(found.statusz).toBe('függőben');
   });
 
@@ -105,14 +111,12 @@ describe('GET /api/ajanlataim', () => {
     expect(contains).toBe(false);
   });
 
-  it('admin is látja a sajátjait, de nem a userekét', async () => {
-
+  it('admin is látja a sajátjait', async () => {
     const adminResponse = await request(app)
       .get('/api/ajanlataim')
       .set('Authorization', `Bearer ${adminToken}`);
 
     expect(adminResponse.statusCode).toBe(200);
-    
     expect(Array.isArray(adminResponse.body.ajanlatok)).toBe(true);
   });
 });

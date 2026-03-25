@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../app');
 
 describe('DELETE /api/megrendelesek/:id', () => {
   let userToken;
@@ -37,7 +37,7 @@ describe('DELETE /api/megrendelesek/:id', () => {
         betongyarto_id: 1,
         mennyiseg: 8,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-22",
+        szallitas_datum: "2026-04-10",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -134,7 +134,7 @@ describe('DELETE /api/megrendelesek/:id', () => {
         betongyarto_id: 1,
         mennyiseg: 5,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-23",
+        szallitas_datum: "2026-04-11",
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",

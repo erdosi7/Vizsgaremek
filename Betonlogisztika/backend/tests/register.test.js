@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../app');
 
 describe('POST /api/register', () => {
   
@@ -54,12 +54,5 @@ describe('POST /api/register', () => {
 
     expect(response.statusCode).toBe(400);
     expect(response.body.message).toBe('Ez az email cím már regisztrálva van!');
-  });
-
-  afterAll(async () => {
-    const db = app.get('db'); 
-    if (db) {
-      await db.end();
-    }
   });
 });
