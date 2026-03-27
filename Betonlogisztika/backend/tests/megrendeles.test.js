@@ -1,6 +1,12 @@
 const request = require('supertest');
 const app = require('../app');
 
+const getFutureDate = (days = 14) => {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date.toISOString().split('T')[0];
+};
+
 describe('POST /api/megrendelesek', () => {
   let userToken;
   let adminToken;
@@ -45,7 +51,7 @@ describe('POST /api/megrendelesek', () => {
         betongyarto_id: 1,
         mennyiseg: 10,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-30",
+        szallitas_datum: getFutureDate(14),
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
@@ -55,12 +61,12 @@ describe('POST /api/megrendelesek', () => {
         tavolsag_keszthelytol: 0
       });
     
-    if (ajanlatRes.body && ajanlatRes.body.ajanlat && ajanlatRes.body.ajanlat.id) {
-      ajanlatId = ajanlatRes.body.ajanlat.id;
-    } else {
+    if (!ajanlatRes.body || !ajanlatRes.body.ajanlat) {
       console.error('Ajánlat létrehozás sikertelen:', ajanlatRes.body);
       return;
     }
+    
+    ajanlatId = ajanlatRes.body.ajanlat.id;
 
     await request(app)
       .put(`/api/admin/ajanlatok/${ajanlatId}/status`)
@@ -104,7 +110,7 @@ describe('POST /api/megrendelesek', () => {
         betongyarto_id: 1,
         mennyiseg: 5,
         pumpa_szukseges: false,
-        szallitas_datum: "2026-03-31",
+        szallitas_datum: getFutureDate(15),
         iranyitoszam: "8360",
         telepules: "Keszthely",
         utca: "Pajta alja út",
