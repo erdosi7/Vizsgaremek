@@ -8,7 +8,6 @@ const checkAdmin = async (userId) => {
   return user && user.jogosultsag === 'admin';
 };
 
-// Felhasználók kezelése
 const getFelhasznalok = async (req, res) => {
   try {
     if (!await checkAdmin(req.user.id)) {
@@ -112,7 +111,6 @@ const createFelhasznalo = async (req, res) => {
   }
 };
 
-// Ajánlatok kezelése admin
 const getAdminAjanlatok = async (req, res) => {
   try {
     if (!await checkAdmin(req.user.id)) {
@@ -159,7 +157,6 @@ const deleteAdminAjanlat = async (req, res) => {
   }
 };
 
-// Megrendelések kezelése admin
 const getAdminMegrendelesek = async (req, res) => {
   try {
     if (!await checkAdmin(req.user.id)) {
@@ -237,7 +234,6 @@ const deleteAdminMegrendeles = async (req, res) => {
   }
 };
 
-// Partnerek kezelése
 const getPartnerek = async (req, res) => {
   try {
     if (!await checkAdmin(req.user.id)) {

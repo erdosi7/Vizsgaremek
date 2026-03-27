@@ -13,12 +13,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Alap útvonal
 app.get('/', (req, res) => {
   res.send('🚀 BetonLogisztika API fut!');
 });
 
-// Route-ok
 app.use('/api', authRoutes);
 app.use('/api', ajanlatRoutes);
 app.use('/api', megrendelesRoutes);

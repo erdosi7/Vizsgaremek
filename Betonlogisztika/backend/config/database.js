@@ -1,4 +1,3 @@
-// config/database.js
 const mysql = require('mysql2');
 require('dotenv').config();
 
@@ -12,7 +11,6 @@ const db = mysql.createPool({
   queueLimit: 0
 }).promise();
 
-// Teszt kapcsolat
 (async () => {
   try {
     const connection = await db.getConnection();
