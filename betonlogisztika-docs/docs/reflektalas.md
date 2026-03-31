@@ -1,0 +1,11 @@
+# Reflektálás
+
+A vizsgaprojekt keretében egy betonszállítási webalkalmazást hoztunk létre, amely lehetővé teszi a felhasználók számára a regisztrációt, bejelentkezést, ajánlatkérést, megrendelést, valamint saját ajánlataik és megrendeléseik nyomon követését. Az adminisztrátorok számára külön felület készült a felhasználók, ajánlatok, megrendelések és partnerek kezelésére. A projektet egy valós betonszállító cég igényei alapján terveztük meg, így a fejlesztés során a valós üzleti folyamatokat igyekeztünk leképezni.
+
+A projektet azért tudtuk létrehozni, mert elsajátítottuk a szükséges technológiákat: a frontendet React keretrendszerrel, Vite segítségével építettük fel, a backendet Node.js és Express segítségével, MVC architektúrában alakítottuk ki, adatbázisnak MySQL-t használtunk, a konténerizációhoz pedig a Docker-t. A tanultak gyakorlati alkalmazása révén tudtunk működőképes alkalmazást létrehozni.
+
+Az eredeti célunk egy teljes körű, felhasználóbarát webalkalmazás létrehozása volt, ahol a betont rendelni kívánó ügyfelek egyszerűen és gyorsan kérhetnek ajánlatot, majd leadhatják megrendelésüket, miközben az adminok átláthatóan kezelhetik a folyamatokat. A projekt során ezt a célt maradéktalanul teljesítettük.
+
+A megvalósítást a következő sorrendben végeztük: először megterveztük az adatbázis szerkezetét, majd felépítettük a backend API-t MVC struktúrában, ahol a modellek kezelik az adatbázis műveleteket, a controller-ek tartalmazzák az üzleti logikát, a route-ok pedig összekapcsolják a végpontokat a controller függvényekkel. Ezt követően elkészítettük a React frontendet, ahol a komponensek biztosítják a felhasználói felületet. Végül tesztekkel (Jest a backendhez, Selenium a frontendhez) ellenőriztük a helyes működést, majd Docker segítségével konténerbe csomagoltuk az alkalmazást.
+
+A projekt továbbfejlesztése során számos lehetőség adódik: email értesítések beépítése a sikeres regisztrációról, ajánlatról vagy megrendelésről, online fizetési opció hozzáadása, valós idejű szállításkövetés megvalósítása térképes felületen, chatbot integrálása az automatikus ügyféltájékoztatásra, valamint automatikus PDF generálás az ajánlatok és számlák számára. Ezek a bővítések tovább növelnék az alkalmazás használhatóságát és professzionalitását.
