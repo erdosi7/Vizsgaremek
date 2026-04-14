@@ -179,3 +179,6 @@ A felhasználói felület működését Selenium WebDriver segítségével teszt
 | Backend tesztek | `cd backend && npm test` | - |
 | Selenium tesztek | `cd frontend && npm run test:selenium` | - |
 
+Admin hozzá férhetőség: 
+- Felhasználónév: admin@gmail.com
+- Jelszó: admin67
