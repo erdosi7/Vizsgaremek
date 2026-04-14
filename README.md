@@ -13,7 +13,7 @@
 5. [Tervezett vállalásaim – Fáró Sebestyén](#tervezett-vállalásaim--fáró-sebestyén)
 6. [Tervezett vállalásaim – Erdősi Zsombor](#tervezett-vállalásaim--erdősi-zsombor)
 7. [Fejlesztési eszközök](#fejlesztési-eszközök)
-8. [Környezet és futtatás lépésről lépésre](#környezet-és-futtatás)
+8. [Környezet és futtatás](#környezet-és-futtatás)
 
 ---
 
